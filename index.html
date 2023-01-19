@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="설치 없이 가입 즉시 바로 이용할 수 있는 무료 채팅 서비스를 제공 해 드리겠습니다." />
+        <meta name="author" content="" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="바로 이용하는 무료 채팅 솔루션" />
+        <meta property="og:description" content="설치 없이 가입 즉시 바로 이용할 수 있는 무료 채팅 서비스를 제공 해 드리겠습니다." />
+        <meta property="og:image" content="https://www.vchatcloud.com/img/common/og_img.png" />
+        <meta property="og:url" content="https://www.vchatcloud.com" />
+        <title>Mobile형</title>
+
+        <link rel="canonical" href="https:// vchatcloud.com/index.html">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+        <link href="css/reset.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="css/toastr.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        
+        <script src="https://kit.fontawesome.com/c13f14f04a.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://vchatcloud.com/lib/vchatcloud-last.min.js"></script>
+        <!-- <script src="js/libs/e7lib.min.js"></script> -->
+        <script src="https://vchatcloud.com/lib/e7lib-latest.min.js"></script>
+        <script src="js/libs/jquery.als-2.1.min.js"></script>
+        <script src="js/libs/toastr.min.js"></script>
+        <script src="js/libs/jszip.min.js"></script>
+        <script src="js/libs/sly.min.js"></script>
+        <!-- defer 태그 삭제 시 오류나니 주의 -->
+        <script src="js/libs/mo.min.js" defer></script>
+
+        <script src="js/login.js"></script>
+        <script src="js/draw.js"></script>
+        <script src="js/emoji.js"></script>
+        <script src="js/errMsg.js"></script>
+    </head>
+
+    <!-- <script type="text/javascript">
+        let imgUrl = "";
+
+        function current(obj) {
+            $("#chat_icon_input").attr("src", imgUrl);
+        }
+    </script> -->
+
+    <body>
+        <div id="wrap">
+            <section>
+                <!-- 샘플 화면 -->
+                <div class="mobile">
+                    <article class="contents">
+                        <!-- 비디오 -->
+                        <div class="video">
+                            <iframe id="ytplayer" type="text/html" width="100%" height="100%" src="https://www.youtube.com/embed/2ejTprWF-B0?autoplay=1&loop=1&listType=playlist&list=PLk_UmMfvZDx13UXKjoiSvRXnvdzRubH-K&controls=0&mute=1&modestbranding=1&rel=0" frameborder="0"></iframe>
+                        </div>
+                        <div class="chat">
+                            <!-- 로그인 -->
+                            <div class="login">
+                                <p class="login-title">채팅방 설정</p>
+                                <div class="profile">
+                                    <p>프로필 이미지</p>
+                                    <div class="als-container" id="lista1">
+                                        <span class="als-prev"><img src="img/profile/left_arrow.png" alt="prev" title="previous" width="100%" /></span>
+                                        <div class="als-viewport">
+                                            <div class="als-wrapper"></div>
+                                        </div>
+                                        <span class="als-next"><img src="img/profile/right_arrow.png" alt="next" title="next" width="100%" /></span>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <label for="name">대화명</label>
+                                    <input class="name_txt" type="text" id="name" placeholder="로그인 할 대화명을 입력 해주세요.">
+                                </div>
+                                <button class="login_btn" onclick="location.href='#!'">확인</button>
+                                <!--<a class="popupbtn" href="#!">확인</a><a class="popupbtn" href="#!">취소</a>-->
+                            </div>
+                            <!-- 도움말 시작 -->
+                            <div class="use_help">
+                                <div class="help_contents">
+                                <ul class="help_title_wrap">
+                                    <li class="help_title">메시지 보내기</li>
+                                    <img src="img/help/001.png" class="help_img" width="100%" />
+                                    <ol class="help_subtitle_wrap">
+                                    <li>전송하실 메시지를 입력하고 <span class="btn_send">전송</span>을 클릭하세요.</li>
+                                    </ol>
+                                </ul>
+                                <ul class="help_title_wrap">
+                                    <li class="help_title">이모지 및 이모티콘 보내기</li>
+                                    <img src="img/help/002.png" class="help_img" width="100%" />
+                                    <ol class="help_subtitle_wrap">
+                                    <li>
+                                        채팅 입력창 하단의 <span class="help_point"><i class="fas fa-laugh"></i></span> 을 클릭하시면 나타나는 목록에서 원하시는 이모지 또는
+                                        이모티콘을 선택하세요.
+                                    </li>
+                                    </ol>
+                                </ul>
+                                <ul class="help_title_wrap">
+                                    <li class="help_title">귓속말 보내기, 1:1 채팅하기, 신고하기</li>
+                                    <img src="img/help/003.png" class="help_img" width="100%" />
+                                    <ol class="help_subtitle_wrap">
+                                    <li>원하시는 상대의 대화명을 클릭하세요.</li>
+                                    <li>
+                                        귓속말 보내기 : 팝업창에서 <span class="help_point"><i class="fa-regular fa-paper-plane"></i>귓속말 보내기</span> 하단의 입력창에 보내실
+                                        메시지를 입력하고 <span>보내기</span>버튼을 클릭하세요.
+                                    </li>
+                                    <li>
+                                        신고하기 : 팝업창에서 <span class="help_point"><i class="fas fa-not-equal"></i> 신고하기</span>을 클릭하세요.
+                                    </li>
+                                    </ol>
+                                </ul>
+                                <ul class="help_title_wrap">
+                                    <li class="help_title">번역하기</li>
+                                    <img src="img/help/006.png" class="help_img" width="100%" />
+                                    <ol class="help_subtitle_wrap">
+                                    <li>번역할 대화내용을 우클릭하세요.</li>
+                                    <li>나타난 팝업창에서 번역할 언어를 선택하시면 번역된 대화내용이 나타납니다.</li>
+                                    </ol>
+                                </ul>
+                                </div>
+                                <div class="btn_help_close">도움말 닫기</div>
+                            </div>
+                            <!-- 채팅 -->
+                            <div class="chat_field" id="chat">
+                                <!-- 에러 팝업 -->
+                                <div class="errorpopup">
+                                    <p class="ico_error"><i class="fas fa-exclamation-circle"></i></p>
+                                    <p>시스템이 원활하지 않아 오류가 발생하였습니다. 잠시 후, 다시 참여해 주시기 바랍니다.</p>
+                                    <a class="popupbtn" href="#!">닫기</a>
+                                </div>
+                                <!-- 커스텀 팝업 -->
+                                <div class="custompopup">
+                                    <p>팝업</p>
+                                    <a class="popupbtn" href="#!">확인</a><a class="popupbtn" href="#!">취소</a>
+                                </div>
+                                <!-- 채팅 상단 -->
+                                <div class="chat_name">
+                                    <ul id="roomNm">
+                                            <span class="roomNm">youtube_mobile_temp</span>
+                                            (<a class="chat-user-list_btn">
+                                                <i class="fas fa-user" aria-hidden="true"></i>01
+                                            </a>)
+                                            <a class="gather-file_btn"><i class="fa-regular fa-folder-open"></i></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="chat_name_right">
+                                        <li class="like">
+                                            <span id="likeCounter"></span>
+                                            <a href="#!" id="sendLike"><i class="fab fa-gratipay"></i></a>
+                                        </li>
+                                        <!-- 나가기 버튼 -->
+                                        <li>
+                                            <a href="#!" class="help">도움말</a>
+                                        </li>
+                                        <li class="chat_name_closebtn">
+                                            <a href="#!" id="closebtn"><i class="fas fa-sign-out-alt"></a></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- 다운로드 진행상황 팝업 시작 -->
+                                <div class="downprogress_dim">
+                                    <!-- 노출시 visibility 속성 변경 -->
+                                    <div class="downprogress_wrap">
+                                    <div class="downprogress_title">다운로드</div>
+                                    <button class="close_ico"><i class="fa-solid fa-xmark"></i></button>
+                                    <div class="downprogress_content_wrap">
+                                        <div class="downprogress_subtitle">선택한 파일을 저장하는 중입니다.</div>
+                                        <div class="down_contents_count">
+                                        <span class="current_contents">1</span><span class="contents_mid">/</span><span class="general_contents">1</span>
+                                        </div>
+                                        <progress value="10" min="0" max="100" class="downprogress_bar"></progress>
+                                        <div class="contents_volume_wrap"><span class="current_volume">1MB</span>/<span class="general_volume">2MB</span></div>
+                                    </div>
+                                    <button class="down_cancel_btn">취소</button>
+                                    </div>
+                                </div>
+                                <!-- 다운로드 진행상황 팝업 끝 -->
+                                <!-- 파일 모아보기 시작 -->
+                                <div class="gather-file-wrap">
+                                    <!-- 노출 시 CSS display:block 로 수정-->
+                                    <div class="gather-file-subwrap">
+                                    <div class="file-menu gather-image">
+                                        <span>사진</span>
+                                    </div>
+                                    <div class="file-content-wrap image-wrap">
+                                        <ul class="file-preview-list">
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        <li class="file-preview-image">
+                                            <img src="https://s.pstatic.net/static/www/mobile/edit/20220415/cropImg_728x360_91930385614927605.jpeg" />
+                                        </li>
+                                        </ul>
+                                        <ul class="file-selet-count-wrap">
+                                        <li class="file-selet-count">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            <span class="select-count">0</span><span>개 선택</span>
+                                        </li>
+                                        <li class="file-down-btn"><i class="fa-solid fa-download"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="file-menu gather-vod">
+                                        <span>동영상</span>
+                                    </div>
+                                    <div class="file-content-wrap vod-wrap">
+                                        <ul class="file-preview-list">
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        </ul>
+                                        <ul class="file-selet-count-wrap">
+                                        <li class="file-selet-count">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            <span class="select-count">0</span><span>개 선택</span>
+                                        </li>
+                                        <li class="file-down-btn"><i class="fa-solid fa-download"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="file-menu gather-file">
+                                        <span>파일</span>
+                                    </div>
+                                    <div class="file-content-wrap file-wrap">
+                                        <ul class="file-preview-list">
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        <li class="file-preview-file">
+                                            <div class="gather-video-wrap">
+                                            <p class="gather-file-icon"><i class="fa-solid fa-video"></i></p>
+                                            <p class="gather-file-name">가나다라마바사아자차카타파하ABCDEFGHIJLMNOPRWEQWSFASFSDGSD1234567890</p>
+                                            <p class="gather-file-date">유효기간<span>2022-05-03</span></p>
+                                            <p class="gather-file-size">15.87KB</p>
+                                            </div>
+                                        </li>
+                                        </ul>
+                                        <ul class="file-selet-count-wrap">
+                                        <li class="file-selet-count">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            <span class="select-count">0</span><span>개 선택</span>
+                                        </li>
+                                        <li class="file-down-btn"><i class="fa-solid fa-download"></i></li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="btn_gather_close">파일서랍 닫기</div>
+                                </div>
+                                <script>
+                                    $('.chat .gather-file-wrap .file-menu').click(function () {
+                                    $(this).next('.chat .gather-file-wrap .file-content-wrap').stop().slideToggle(300);
+                                    $(this).toggleClass('on').siblings().removeClass('on');
+                                    $(this).next('.chat .gather-file-wrap .file-content-wrap').siblings('.chat .gather-file-wrap .file-content-wrap').slideUp(300); // 1개씩 펼치기
+                                    });
+                                    $('.chat .gather-file-wrap .file-menu').first().trigger('click');
+                                </script>
+                                <!-- 파일 모아보기 끝 -->
+                                <!--채널 추가 팝업 시작-->
+                                <div class="channel-popup-dim">
+                                    <!--대화상대 리스트 팝업 시작-->
+                                    <!--노출 시 .active 추가-->
+                                    <div class="chat-user-list-dim">
+                                    <div class="chat-user-list-wrap">
+                                        <div class="chat-user-list-title">
+                                        <p>대화상대</p>
+                                        <p><i class="fas fa-times"></i></p>
+                                        </div>
+                                        <div class="chat-user-list-contents">
+                                        <ul class="chat-user-list">
+                                            <li class="chat-user">
+                                            <div class="invite-check"><input type="checkbox" id="invite" /><label for="invite"></label></div>
+                                            <div class="user-profile-img profile-1"></div>
+                                            <div class="user-name">가나다라마바사아자차카타파하</div>
+                                            <div class="language">번역안함</div>
+                                            <div class="lang-btn-wrap">
+                                                <input type="checkbox" class="lang-btn" id="switch" />
+                                                <label for="switch" class="switch_label">
+                                                <span class="onf_btn"></span>
+                                                </label>
+                                            </div>
+                                            </li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <!--번역언어 선택 팝업 시작-->
+                                    <div class="select-lang-dim">
+                                        <div class="select-lang-wrap">
+                                        <div class="select-lang-title">
+                                            <p>번역 언어 선택</p>
+                                            <p><i class="fas fa-times"></i></p>
+                                        </div>
+                                        <div class="select-lang-contents">
+                                            <ul class="select-lang-list">
+                                            <li class="select-lang">
+                                                <input type="radio" checked />
+                                                <label>번역안함</label>
+                                            </li>
+                                            <li class="select-lang">
+                                                <input type="radio" />
+                                                <label>English</label>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                        <a href="#" class="select-lang-btn">선택한 언어로 자동 번역하기</a>
+                                        </div>
+                                    </div>
+                                    <!--번역언어 선택 팝업 끝-->
+                                    </div>
+                                    <!--대화상대 리스트 팝업 끝-->
+                                </div>
+                                <!--채널 추가 팝업 끝-->
+                                <!-- 대화 / 입장: entery, 채팅: content, 공지: notice, 귓속말: whisper, 퇴장: chatout -->
+                                <div class="chat_contents">
+                                    <div id="content1">
+                                        <!-- 귓속말, 신고 팝업 -->
+                                        <div class="popupLayer">
+                                            <div class="popup">
+                                                <ul class="popup_content">
+                                                    <li class="ico_whisper"><a href="#!"><i class="fas fa-comment-alt"></i>귓속말 보내기</a>
+                                                        <div id="whisper">
+                                                            <form><input type="text" name="message"><button>보내기</button></form>
+                                                        </div>
+                                                    </li>
+                                                    <li><a href="#!"><i class="fas fa-not-equal"></i>신고하기</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 메시지 작성-->
+                                <div class="chat_scroll" style="display: none"></div>
+                                <div class="chat_input">
+                                    <div class="chat_input_wrap">
+                                        <!-- 이모지 및 이모티콘 영역 -->
+                                        <div class="emoji-wrap">
+                                             <!-- 이모지 탭  -->
+                                            <div class="emoji_frame">
+                                            <ul class="emoji-tab-wrap"></ul>
+                                            </div>
+                                        </div>
+                                        <div class="chat_input_subwrap">
+                                            <div class="profile_img">
+                                                <img id="chat_icon_input" src="img/profile/1.png" alt="man" width="100%">
+                                            </div>
+                                            <div class="textbox" id="content" maxlength="200" contenteditable="true" placeholder="메세지 입력하기"></div>
+                                            <ul class="emoji">
+                                                <li>
+                                                  <a href="#!" class="ico_emoji show">
+                                                    <i class="fas fa-laugh"></i>
+                                                  </a>
+                                                </li>
+                                                <li>
+                                                  <a href="#!" class="ico_keyboard">
+                                                    <i class="fas fa-keyboard"></i>
+                                                  </a>
+                                                </li>
+                                            </ul>
+                                            <div class="file">
+                                                <a class="ico_file" fref="#!">
+                                                    <!-- <i class="fas fa-file-arrow-up"></i> -->
+                                                    <i class="fa-solid fa-paperclip"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="btn_send"><a href="#!" id="sendCounter">전송</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
