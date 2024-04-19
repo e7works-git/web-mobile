@@ -111,7 +111,6 @@ $(function () {//dom ready window ready, window onload
             e.preventDefault(); //주의해서 사용
             channel.sendMessage({
                 message: $(this).text(),
-                messageType: JSON.stringify({ profile: res.profile }),
                 mimeType: "text"
             });
             $(this).text('');
@@ -122,7 +121,6 @@ $(function () {//dom ready window ready, window onload
     $('#sendCounter').click(function (e) {
         channel.sendMessage({
             message: $('#content').text(),
-            messageType: JSON.stringify({ profile: res.profile }),
             mimeType: "text"
         });
         $('#content').text('');
@@ -330,53 +328,51 @@ async function write(msg, tp, pre, sub) {
                 }
             }
             break;
-        case 'fileSend':
-            cc = sub ? $('<div>', { class: 'newchat-comment-wrap' }) : $('<div>', { class: 'content' });
-            let profile = 'profile-1';
-            if (msg.profile) {
-                profile = 'profile-' + msg.profile;
-            }
-            cc.append($('<p>', { class: `profile-img ${profile}` }));
-            if (channel.clientKey != msg.clientKey) {
-                cc.append(
-                    $('<a>', { class: nameClass, href: '#!' })
-                        .text(msg.nickName)
-                        .data(msg)
-                        .on({ click: sub ? subOpenLayer : openLayer })
-                );
-            } else {
-                cc.append($('<a>', { class: nameClass, href: '#!' }).css({ "cursor": "default" }).text(msg.nickName));
-            }
-            if (msg.imgKey) {
-                fileUtil.imgLoad(msg.imgKey, function (_img, button) {
-                    cc.append(
-                        msg.tag
-                            .append(
-                                $(_img).on('click', function () {
-                                    let windowOpen = window.open('img.html');
-                                    let openImgUrl = _img.src;
-                                    windowOpen.addEventListener('load', function () {
-                                        windowOpen.document.getElementById('target').src = openImgUrl;
-                                    });
-                                })
-                            )
-                            .append(button)
-                    );
-                    chatHeight(sub, pre);
-                });
-            } else if (msg.vodKey) {
-                fileUtil.vodLoad(msg.vodKey, function (vod, button) {
-                    cc.append(msg.tag.append(vod).append(button));
-                    chatHeight(sub, pre);
-                });
-            } else if (msg.aodKey) {
-                fileUtil.aodLoad(msg.aodKey, function (aod, button) {
-                    cc.append(msg.tag.append(aod).append(button));
-                    chatHeight(sub, pre);
-                });
-            }
-            cc.append(msg.tag);
-            break;
+        case 'fileSend': {
+          cc = sub ? $('<div>', { class: 'newchat-comment-wrap' }) : $('<div>', { class: 'content' });
+          let profile = msg?.profile ?? 'profile-1';
+          cc.append($('<p>', { class: `profile-img ${profile}` }));
+          if (channel.clientKey != msg.clientKey) {
+              cc.append(
+                  $('<a>', { class: nameClass, href: '#!' })
+                      .text(msg.nickName)
+                      .data(msg)
+                      .on({ click: sub ? subOpenLayer : openLayer })
+              );
+          } else {
+              cc.append($('<a>', { class: nameClass, href: '#!' }).css({ "cursor": "default" }).text(msg.nickName));
+          }
+          if (msg.imgKey) {
+              fileUtil.imgLoad(msg.imgKey, function (_img, button) {
+                  cc.append(
+                      msg.tag
+                          .append(
+                              $(_img).on('click', function () {
+                                  let windowOpen = window.open('img.html');
+                                  let openImgUrl = _img.src;
+                                  windowOpen.addEventListener('load', function () {
+                                      windowOpen.document.getElementById('target').src = openImgUrl;
+                                  });
+                              })
+                          )
+                          .append(button)
+                  );
+                  chatHeight(sub, pre);
+              });
+          } else if (msg.vodKey) {
+              fileUtil.vodLoad(msg.vodKey, function (vod, button) {
+                  cc.append(msg.tag.append(vod).append(button));
+                  chatHeight(sub, pre);
+              });
+          } else if (msg.aodKey) {
+              fileUtil.aodLoad(msg.aodKey, function (aod, button) {
+                  cc.append(msg.tag.append(aod).append(button));
+                  chatHeight(sub, pre);
+              });
+          }
+          cc.append(msg.tag);
+          break;
+        }
         default:
             cc = $('<div>', { class: 'content' });
             if (typeof msg == 'string') {
@@ -386,8 +382,8 @@ async function write(msg, tp, pre, sub) {
             } else if (typeof msg == 'object' && msg.message) {
                 let _msg = $(`<input value='${msg.message}' />`).val()
                 let profile = 'profile-1';
-                if (msg.messageType) {
-                    profile = 'profile-' + JSON.parse(msg.messageType).profile;
+                if (msg?.userInfo?.profile) {
+                    profile = `profile-${msg.userInfo.profile ?? "1"}`;
                 }
                 if (channel.clientKey != msg.clientKey) {
                     if (msg.mimeType === 'emoji_img') {
@@ -1361,7 +1357,6 @@ function fileUpdate(flag, res, isPrivate) {
         ];
         const data = {
             message: JSON.stringify(param),
-            messageType: JSON.stringify({ profile: channel.userInfo.profile }),
             mimeType: 'file',
         };
         if (isPrivate === true) {
@@ -1387,10 +1382,13 @@ function fileWrite(msg, pre, isPrivate) {
 
     if (data) {
         let param = {
-            profile: JSON.parse(msg.messageType).profile,
+            profile: "profile-1",
             clientKey: msg.clientKey,
             nickName: msg.nickName,
         };
+        if (msg?.userInfo?.profile) {
+          param.profile = `profile-${msg.userInfo.profile}`
+        }
         fileUtil.loadCheck({
             ext: data.type,
             key: data.id,
