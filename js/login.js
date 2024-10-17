@@ -56,6 +56,13 @@ $(function () {
 
   res.loginShow();
 
+  if (youtubeId != undefined) {
+    $("#ytplayer").attr(
+      "src",
+      `https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=0&mute=1&modestbranding=1&rel=0&${youtubeList}&loop=1`
+    );
+  }
+
   $("#name").on("keyup", function (e) {
     if (e.keyCode == 13) {
       res.loginBtn.trigger("click");
